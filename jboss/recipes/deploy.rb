@@ -44,7 +44,7 @@ node[:deploy].each do |application, deploy|
   #   end
   # end
 
-  suffix = File.exist?(current_dir, 'WEB-INF') ? '.war' : '.ear'
+  suffix = File.exist?(File.join(current_dir, 'WEB-INF')) ? '.war' : '.ear'
 
   webapp_dir = ::File.join(node['jboss']['jboss_home'], 'standalone', 'deployments', application, suffix)
 
