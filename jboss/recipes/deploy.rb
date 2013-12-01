@@ -20,10 +20,10 @@ node[:deploy].each do |application, deploy|
     path deploy[:deploy_to]
   end
 
-  opsworks_deploy do
-    deploy_data deploy
-    app application
-  end
+  # opsworks_deploy do
+  #   deploy_data deploy
+  #   app application
+  # end
 
   # current_dir = ::File.join(deploy[:deploy_to], 'current')
   # webapp_dir = ::File.join(node['tomcat']['webapps_base_dir'], deploy[:document_root].blank? ? application : deploy[:document_root])
