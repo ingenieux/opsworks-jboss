@@ -85,12 +85,6 @@ end
 
 # template jboss-log4j.xml
 
-# start service
-service "jboss" do
-  provider Chef::Provider::Service::Upstart
-  supports :status => true, :restart => true, :reload => true
-  action [ :enable, :start ]
-end
 
 # link ::File.join(node['tomcat']['lib_dir'], node['tomcat']['mysql_connector_jar']) do
 #   to ::File.join(node['tomcat']['java_dir'], node['tomcat']['mysql_connector_jar'])

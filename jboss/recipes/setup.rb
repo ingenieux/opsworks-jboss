@@ -11,6 +11,7 @@
 # or implied. See the License for the specific language governing permissions
 # and limitations under the License.
 
+include_recipe 'opsworks_java::jvm_install'
 include_recipe 'jboss::firewall'
 include_recipe 'jboss::install'
 
