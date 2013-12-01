@@ -44,8 +44,12 @@ node[:deploy].each do |application, deploy|
   #   end
   # end
 
-  # link webapp_dir do
-  #   to current_dir
-  #   action :create
-  # end
+  webapp_dir = ::File.join(node['jboss']['jboss_home'], 'standalone', 'deployments', application)
+
+  link webapp_dir do
+    to current_dir
+    action :create
+  end
+
+  # file(::File.join(webapp_dir, '.dodeploy')) { action :dodeploy }
 end
