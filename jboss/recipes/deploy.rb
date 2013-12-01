@@ -37,8 +37,8 @@ node[:deploy].each do |application, deploy|
   #   end
   # end
 
-  link webapp_dir do
-    to current_dir
-    action :create
-  end
+  # link webapp_dir do
+  #   to current_dir
+  #   action :create
+  # end
 end
