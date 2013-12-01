@@ -12,8 +12,11 @@
 # and limitations under the License.
 
 include_recipe 'opsworks_java::jvm_install'
-include_recipe 'jboss::firewall'
 include_recipe 'jboss::install'
+
+service "tomcat7" do
+ action [ :stop, :disable ]
+end
 
 # start service
 service "jboss" do
@@ -21,3 +24,4 @@ service "jboss" do
   supports :status => true, :restart => true, :reload => true
   action [ :enable, :start ]
 end
+
