@@ -19,8 +19,8 @@ execute 'enable mod_proxy for apache-tomcat binding' do
 end
 
 execute 'enable module for apache-tomcat binding' do
-  command "/usr/sbin/a2enmod proxy_http"
-  not_if {::File.symlink?(::File.join(node['apache']['dir'], 'mods-enabled', "proxy_http.load"))}
+  command "/usr/sbin/a2enmod proxy_ajp"
+  not_if {::File.symlink?(::File.join(node['apache']['dir'], 'mods-enabled', "proxy_ajp.load"))}
 end
 
 include_recipe 'apache2::service'
