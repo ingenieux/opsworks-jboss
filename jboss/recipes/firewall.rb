@@ -13,8 +13,9 @@
 
 bash "Enable IPTables to Port 8080" do
   code <<-eoh
-iptables -A INPUT -i eth0 -p tcp --dport 80 -j ACCEPT
-iptables -A INPUT -i eth0 -p tcp --dport 8080 -j ACCEPT
+# iptables -A INPUT -i eth0 -p tcp --dport 22 -j ACCEPT
+# iptables -A INPUT -i eth0 -p tcp --dport 80 -j ACCEPT
+# iptables -A INPUT -i eth0 -p tcp --dport 8080 -j ACCEPT
 iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
 eoh
 end
