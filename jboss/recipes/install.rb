@@ -11,7 +11,7 @@
 # or implied. See the License for the specific language governing permissions
 # and limitations under the License.
 
-include_recipe 'jboss::firewall'
+include_recipe 'jboss::apache'
 
 jboss_home = node['jboss']['jboss_home']
 jboss_user = node['jboss']['jboss_user']

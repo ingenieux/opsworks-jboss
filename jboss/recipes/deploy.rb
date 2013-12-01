@@ -20,12 +20,19 @@ node[:deploy].each do |application, deploy|
     path deploy[:deploy_to]
   end
 
-  # opsworks_deploy do
-  #   deploy_data deploy
-  #   app application
+  opsworks_deploy do
+    deploy_data deploy
+    app application
+  end
+
+  current_dir = ::File.join(deploy[:deploy_to], 'current')
+
+  # bash do
+  #   code <<-eoh
+  #
+  #   eoh
   # end
 
-  # current_dir = ::File.join(deploy[:deploy_to], 'current')
   # webapp_dir = ::File.join(node['tomcat']['webapps_base_dir'], deploy[:document_root].blank? ? application : deploy[:document_root])
 
   # # opsworks_deploy creates some stub dirs, which are not needed for typical webapps
