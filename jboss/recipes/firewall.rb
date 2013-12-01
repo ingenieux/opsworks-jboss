@@ -20,6 +20,6 @@ eoh
 end
 
 %w{ apache2 httpd }.each do |serv|
-  service(serv) { action => [ :stop, :disable ]}
+  service(serv) { action [ :stop, :disable ] }
 end
 
