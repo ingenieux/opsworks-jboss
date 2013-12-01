@@ -44,7 +44,9 @@ node[:deploy].each do |application, deploy|
   #   end
   # end
 
-  webapp_dir = ::File.join(node['jboss']['jboss_home'], 'standalone', 'deployments', application)
+  suffix = File.exist?(current_dir, 'WEB-INF') ? '.war' : '.ear'
+
+  webapp_dir = ::File.join(node['jboss']['jboss_home'], 'standalone', 'deployments', application, suffix)
 
   link webapp_dir do
     to current_dir

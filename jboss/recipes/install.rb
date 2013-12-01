@@ -83,6 +83,13 @@ template "#{jboss_home}/bin/standalone.conf" do
   group jboss_user
 end
 
+template "#{jboss_home}/standalone/configuration/standalone.xml" do
+  source "standalone.xml.erb"
+  mode "0755"
+  owner jboss_user
+  group jboss_user
+end
+
 # template jboss-log4j.xml
 
 
