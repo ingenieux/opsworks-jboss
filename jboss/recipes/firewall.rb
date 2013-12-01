@@ -11,7 +11,15 @@
 # or implied. See the License for the specific language governing permissions
 # and limitations under the License.
 
-include_recipe 'tomcat::context'
-# Optional: Trigger a Tomcat restart in case of a configure event, if relevant
-# settings in custom JSON have changed (e.g. java_opts/JAVA_OPTS):
-#include_recipe 'tomcat::container_config'
+bash "Enable IPTables to Port 8080" do
+  code <<-eoh
+iptables -A INPUT -i eth0 -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -i eth0 -p tcp --dport 8080 -j ACCEPT
+iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
+eoh
+end
+
+%{ apache2 httpd }.each do |serv|
+  service(serv) { :action => [ :stop, :disable ]}
+end
+

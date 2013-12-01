@@ -11,15 +11,17 @@
 # or implied. See the License for the specific language governing permissions
 # and limitations under the License.
 
-service 'tomcat' do
-  service_name "tomcat#{node['tomcat']['base_version']}"
 
-  case node[:platform]
-  when 'centos', 'redhat', 'fedora', 'amazon'
-    supports :restart => true, :reload => true, :status => true
-  when 'debian', 'ubuntu'
-    supports :restart => true, :reload => false, :status => true
-  end
 
-  action :nothing
-end
+default['jboss']['jboss_home'] = "/home/jboss/share/jboss/default"
+default['jboss']['version'] = "7.1.1"
+default['jboss']['dl_url'] = "http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.tar.gz"
+default['jboss']['jboss_user'] = "jboss"
+
+default["jboss"]["bind"]["public"] = "0.0.0.0"
+default["jboss"]["bind"]["management"] = "0.0.0.0"
+default["jboss"]["bind"]["unsecure"] = "0.0.0.0"
+
+## For more details on this format, see 
+
+default['jboss']['jboss_admins'] = ""

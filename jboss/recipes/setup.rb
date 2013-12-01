@@ -11,9 +11,12 @@
 # or implied. See the License for the specific language governing permissions
 # and limitations under the License.
 
-ruby_block 'remove the ROOT webapp' do
-  block do
-    ::FileUtils.rm_rf(::File.join(node['tomcat']['webapps_base_dir'], 'ROOT'), :secure => true)
-  end
-  only_if { ::File.exists?(::File.join(node['tomcat']['webapps_base_dir'], 'ROOT')) && !::File.symlink?(::File.join(node['tomcat']['webapps_base_dir'], 'ROOT')) }
+include_recipe 'jboss::firewall'
+include_recipe 'jboss::install'
+
+# start service
+service "jboss" do
+  provider Chef::Provider::Service::Upstart
+  supports :status => true, :restart => true, :reload => true
+  action [ :enable, :start ]
 end
