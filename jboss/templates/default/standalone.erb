@@ -44,7 +44,7 @@
 # Specify the location of the Java home directory.  If set then $JAVA will
 # be defined to $JAVA_HOME/bin/java, else $JAVA will be "java".
 #
-JAVA_HOME=<%= node['java']['java_home'] %>
+JAVA_HOME=<%= "#{::File.expand_path(::File.join(`readlink -f /usr/bin/java`, '..', '..'))}" %>
 
 if [ "x$JAVA_OPTS" = "x" ]; then
    JAVA_OPTS="-Xms64m -Xmx512m -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true -Dorg.jboss.resolver.warning=true -Dsun.rmi.dgc.clientgcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000"
